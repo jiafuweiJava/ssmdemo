@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;    
 import javax.servlet.http.HttpServletRequest;    
     
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;    
 import org.springframework.ui.Model;    
 import org.springframework.web.bind.annotation.RequestMapping;    
@@ -20,7 +21,12 @@ import com.ssm.service.IUserService;
 @RequestMapping("/user")    
 public class UserController {    
     @Resource    
-    private IUserService userService;    
+    private IUserService userService;   
+    
+    @Scheduled(cron="0/5 * * * * ? ") //间隔5秒执行
+    public void taskCycle(){
+        //System.out.println("spring mvc 容器里配置的定时任务 ");
+    }
        
     @ResponseBody
     @RequestMapping("/userList")    
